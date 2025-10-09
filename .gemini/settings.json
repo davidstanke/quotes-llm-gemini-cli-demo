@@ -1,3 +1,7 @@
 {
-  "extensions": {}
+  "extensions": {},
+  "telemetry": {
+    "enabled": true,
+    "target": "gcp"
+  }
 }
