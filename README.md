@@ -1,4 +1,4 @@
-**Forked from https://github.com/GoogleCloudPlatform/serverless-production-readiness-java-gcp/tree/main/genai/quotes-llm by @ddobrin
+**Forked from https://github.com/GoogleCloudPlatform/serverless-production-readiness-java-gcp/tree/main/genai/quotes-llm by @ddobrin**
 ---
 # Quotes Service - Build & Deploy to Cloud Run
 ## Connect to Google Gemini, open-model LLM in VertexAI and open-model LLM in GKE
