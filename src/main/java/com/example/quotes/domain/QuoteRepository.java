@@ -42,7 +42,7 @@ public interface QuoteRepository extends JpaRepository<Quote,Long>, JpaSpecifica
     Optional<Quote> findById(Long id);
 
     @Transactional(readOnly = true)
-    @Cacheable(value = "quoteCache", key = "author")
-    List<Quote> findByAuthor(String author);
+    @Cacheable(value = "quoteCache", key = "#author")
+    List<Quote> findByAuthorIgnoreCase(String author);
 
 }

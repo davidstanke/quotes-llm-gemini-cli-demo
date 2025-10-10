@@ -56,7 +56,7 @@ public class QuoteService {
   }
 
   public List<Quote> getByAuthor(String author) {
-    return quoteRepository.findByAuthor(author);
+    return quoteRepository.findByAuthorIgnoreCase(author);
   }
 
   public void deleteById(Long id){

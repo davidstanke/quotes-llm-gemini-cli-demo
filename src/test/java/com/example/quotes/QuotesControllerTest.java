@@ -66,6 +66,15 @@ public class QuotesControllerTest {
   }
 
   @Test
+  @DisplayName("Test returns Quotes by Author case-insensitive")
+  void shouldReturnQuoteByAuthorCaseInsensitive() throws Exception {
+    mockMvc.perform(get("/quotes/author/truman capote"))
+        .andExpect(status().isOk())
+        .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+        .andExpect(jsonPath("$[0].author", Matchers.equalTo("Truman Capote")));
+  }
+
+  @Test
   @DisplayName("Test saves Book quote in database")
   void shouldSaveProduct() throws Exception {
     mockMvc.perform(
