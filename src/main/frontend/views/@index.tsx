@@ -1,6 +1,6 @@
 import {Button, Checkbox, Icon, TextField} from "@vaadin/react-components";
 import Quote from "Frontend/generated/com/example/quotes/domain/Quote";
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import QuoteCard from "Frontend/components/QuoteCard";
 import {AutoCrud} from "@vaadin/hilla-react-crud";
 import QuoteModel from "Frontend/generated/com/example/quotes/domain/QuoteModel";
@@ -11,7 +11,19 @@ export default function QuotesView() {
   const [quotes, setQuotes] = useState<Quote[]>([]);
   const [author, setAuthor] = useState("");
   const [book, setBook] = useState("");
+  const [bookError, setBookError] = useState("");
+  const [errorVisible, setErrorVisible] = useState(false);
   const [showCrud, setShowCrud] = useState(false);
+
+  useEffect(() => {
+    if (bookError) {
+      setErrorVisible(true);
+      const timer = setTimeout(() => {
+        setErrorVisible(false);
+      }, 10000); // 10 seconds
+      return () => clearTimeout(timer);
+    }
+  }, [bookError]);
 
   return (
       <div className="p-m flex flex-col items-start gap-m h-full box-border">
@@ -54,9 +66,31 @@ export default function QuotesView() {
                 label="Book Name"
             />
             <Button
-                onClick={e => QuoteEndpoint.quoteByBook(book).then(setQuotes)}>
+                onClick={async (e) => {
+                  try {
+                    const result = await QuoteEndpoint.quoteByBook(book);
+                    setQuotes(result);
+                    setBookError("");
+                  } catch (error) {
+                    setBookError("Error. Unable to fetch quote.");
+                  }
+                }}>
               Search by Book in database
             </Button>
+            {bookError &&
+                <span style={{
+                  color: 'red',
+                  opacity: errorVisible ? 1 : 0,
+                  transition: 'opacity 0.5s ease-out'
+                }}
+                      onTransitionEnd={() => {
+                        if (!errorVisible) {
+                          setBookError("");
+                        }
+                      }}
+                >
+                    {bookError}
+                </span>}
           </div>
           <div
               className="flex gap-s items-baseline border border-b border-dashed border-contrast-50 p-l rounded-l">
