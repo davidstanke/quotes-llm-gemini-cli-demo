@@ -2,6 +2,11 @@
 
 This document provides essential context for AI models interacting with this project. Adhering to these guidelines will ensure consistency and maintain code quality.
 
+## 0. Java coding guidelines
+# Use the Google Java coding guidelines, as specified in
+
+@./GEMINI_JAVA_GUIDELINES.md
+
 ## 1. Project Overview & Purpose
 
 *   **Primary Goal:** This is a full-stack "Quotes Service" application. Its main purpose is to serve quotes and demonstrate integration with various Large Language Models (LLMs) like Google Gemini and other models hosted on Vertex AI and GKE. It features a web UI for interaction.
@@ -19,7 +24,14 @@ This document provides essential context for AI models interacting with this pro
 
 ## 3. Architectural Patterns
 
-@./GEMINI_ARCHITECTURAL_PATTERNS.md
+*   **Overall Architecture:** Monolithic Application. The project uses the Vaadin Hilla framework, which tightly couples the Java backend and the React frontend into a single, cohesive application. This simplifies development and deployment for full-stack features.
+*   **Directory Structure Philosophy:**
+    *   `/src/main/java`: Contains all primary backend Java source code, following standard Maven conventions.
+    *   `/src/main/frontend`: Contains all frontend TypeScript/React source code, including views, components, and generated code from Hilla.
+    *   `/src/main/resources`: Holds backend resources, including `application.properties` for configuration and `/db/migration` for Flyway SQL migration scripts.
+    *   `/containerize`: Contains various Dockerfiles for building container images of the application (e.g., fat JAR, Jlink).
+    *   `/k8s`: Contains Kubernetes deployment manifests (`deployment.yaml`).
+    *   `/docker`: Contains configurations for dependent services like Grafana and Prometheus, managed via `docker-compose.yaml`.
 
 ## 4. Coding Conventions & Style Guide
 
