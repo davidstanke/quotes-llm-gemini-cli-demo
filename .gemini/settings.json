@@ -1,5 +1,14 @@
 {
-  "extensions": {},
+  "general": {
+    "checkpointing": {
+      "enabled": true
+    }
+  },
+  "context": {
+    "fileFiltering": {
+      "respectGitIgnore": true
+    }
+  },
   "telemetry": {
     "enabled": true,
     "target": "gcp"
