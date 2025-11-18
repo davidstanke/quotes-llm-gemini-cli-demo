@@ -12,5 +12,8 @@
   "telemetry": {
     "enabled": true,
     "target": "gcp"
+  },
+  "tools": {
+    "sandbox": true
   }
 }
