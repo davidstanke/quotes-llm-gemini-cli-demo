@@ -100,24 +100,6 @@ export default function QuotesView() {
               Get random quote from database
             </Button>
           </div>
-            <div
-              className="flex gap-s items-baseline border border-b border-dashed border-contrast-50 p-l rounded-l">
-            <Icon icon="vaadin:cloud"/>
-            <Button
-                onClick={e => QuoteEndpoint.randomLLMQuote().then(q => setQuotes([q]))}>
-              Random Quote from Gemini Flash 2.0 Model in VertexAI
-            </Button>
-            <Button
-                onClick={e => QuoteEndpoint.randomLLMInVertexQuote().then(q => setQuotes([q]))}>
-              Random quote from LLama3.1 Open-Model LLM in VertexAI
-            </Button>
-          </div>
-          <div>
-            <Checkbox
-                label="Manage book quotes in DB"
-                checked={showCrud}
-                onCheckedChanged={e => setShowCrud(e.detail.value)}/>
-          </div>
         </div>
         <div className="built-with">UI built in Java with <a href="https://vaadin.com/" target="_blank">Vaadin</a></div>
         {(!!quotes.length && !showCrud) && quotes.map(quote => <QuoteCard
