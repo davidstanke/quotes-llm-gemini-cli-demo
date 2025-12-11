@@ -130,7 +130,7 @@ public class QuoteController {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
         } catch (Exception e) {
-            logger.error("Error fetching quotes by book: " + book, e);
+            logger.error("Error fetching quotes by book: {}", book, e);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
