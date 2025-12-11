@@ -85,7 +85,7 @@ public class QuoteEndpoint implements CrudService<Quote, Long> {
         try {
             return quoteService.getByBook(book);
         } catch (Exception e) {
-            logger.error("Error fetching quotes by book: " + book, e);
+            logger.error("Error fetching quotes by book: {}", book, e);
             throw e;
         }
     }
