@@ -81,6 +81,10 @@ public class QuoteEndpoint implements CrudService<Quote, Long> {
         return quoteService.getByAuthor(author);
     }
 
+    public List<Quote> quoteByBook(String book) {
+        return quoteService.getByBook(book);
+    }
+
     @Override
     public Quote save(Quote quote) {
         if (quote.getId() == null) {
