@@ -45,4 +45,8 @@ public interface QuoteRepository extends JpaRepository<Quote,Long>, JpaSpecifica
     @Cacheable(value = "quoteCache", key = "#author")
     List<Quote> findByAuthorContainingIgnoreCase(String author);
 
+    @Transactional(readOnly = true)
+    @Cacheable(value = "quoteCache", key = "#book")
+    List<Quote> findByBookContainingIgnoreCase(String book);
+
 }

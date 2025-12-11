@@ -59,6 +59,10 @@ public class QuoteService {
     return quoteRepository.findByAuthorContainingIgnoreCase(author);
   }
 
+  public List<Quote> getByBook(String book) {
+    return quoteRepository.findByBookContainingIgnoreCase(book);
+  }
+
   public void deleteById(Long id){
     quoteRepository.deleteById(id);
   }
