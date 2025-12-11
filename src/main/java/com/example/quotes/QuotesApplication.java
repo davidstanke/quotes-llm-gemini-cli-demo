@@ -34,8 +34,8 @@ public class QuotesApplication implements AppShellConfigurator {
     System.out.println("QuotesApplication: Active processors: " + r.availableProcessors());
 		System.out.println("QuotesApplication: Total memory: " + r.totalMemory());
 		System.out.println("QuotesApplication: Free memory: " + r.freeMemory());
-		System.out.println("QuotesApplication: Max memory: " + r.maxMemory());
-
-    SpringApplication.run(QuotesApplication.class, args);
-  }
+		    System.out.println("QuotesApplication: Max memory: " + r.maxMemory());
+		    System.out.println("QuotesApplication: Java Version: " + System.getProperty("java.version"));
+		
+		    SpringApplication.run(QuotesApplication.class, args);  }
 }
