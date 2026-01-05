@@ -98,7 +98,7 @@ public class QuoteController {
                 
             return new ResponseEntity<List<Quote>>(quotes, HttpStatus.OK);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.error("Error executing request", e);
             return new ResponseEntity<List<Quote>>(HttpStatus.INTERNAL_SERVER_ERROR);
         }        
     }
@@ -114,7 +114,23 @@ public class QuoteController {
                 return new  ResponseEntity<List<Quote>>(HttpStatus.NOT_FOUND);
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.error("Error executing request", e);
+            return new  ResponseEntity<List<Quote>>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/quotes/book/{book}")
+    public ResponseEntity<List<Quote>>quoteByBook(@PathVariable("book") String book) {
+        try {
+            List<Quote> quotes = quoteService.getByBook(book);
+
+            if(!quotes.isEmpty()){
+                return new  ResponseEntity<List<Quote>>(quotes, HttpStatus.OK);
+            } else {
+                return new  ResponseEntity<List<Quote>>(HttpStatus.NOT_FOUND);
+            }
+        } catch (Exception e) {
+            logger.error("Error executing request", e);
             return new  ResponseEntity<List<Quote>>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -125,7 +141,7 @@ public class QuoteController {
             Quote saved = quoteService.createQuote(quote);
             return new ResponseEntity<Quote>(saved, HttpStatus.CREATED);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.error("Error executing request", e);
             return new ResponseEntity<Quote>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }     
@@ -146,7 +162,7 @@ public class QuoteController {
                 return new ResponseEntity<Quote>(HttpStatus.NOT_FOUND);
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            logger.error("Error executing request", e);
             return new ResponseEntity<Quote>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }     
@@ -159,7 +175,7 @@ public class QuoteController {
         } catch(EmptyResultDataAccessException e){
             return new ResponseEntity<HttpStatus>(HttpStatus.NOT_FOUND);
         } catch (RuntimeException e) {
-            System.out.println(e.getMessage());
+            logger.error("Error executing request", e);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }    
